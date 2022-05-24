@@ -25,7 +25,6 @@ var sql = 'SELECT * FROM tbUser ORDER BY title COLLATE NOCASE';
   db.close();
 });
 
-
 app.post('/userinsert', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*'); 
