@@ -8,17 +8,28 @@ $(document).ready(() => {
   });
 });
 
-function TestGETDB(){
-  var url = "http://127.0.0.1:3071/";
-  var resposta;
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", url, false);
-  xhttp.send();//A execução do script pára aqui até a requisição retornar do servidor
-
-  resposta = JSON.parse(xhttp.responseText);
+function oi(){
+  const TestGETDB = async () => {
+      
+      const response = await fetch(
+        "http://127.0.0.1:3071/teste",
+        
+      );
+      const data = await response.json();
+      return data;
+    };
   
-  $(rightcontainer).append("<br /><br />" + JSON.stringify(resposta));
-  $(rightcontainer).append("<br /><br />* Seleção do atributo 'title' do primeiro usuario:<br />" + resposta[0].title);
-  //console.log(xhttp.responseText);
+  TestGETDB().then((res)=>{
+  console.log("te amo")
+  $("#titlebox").append(
+    `
+    <h3>
+      ${res.title}
+    </h3>
+    `  
+  
+  )
+  
+  })
 }
+
