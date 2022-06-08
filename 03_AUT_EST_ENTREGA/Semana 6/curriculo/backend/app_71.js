@@ -1,27 +1,24 @@
 const express = require('express'); 
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const hostname = '127.0.0.1';
 
+const port = 3071;
 const sqlite3 = require('sqlite3').verbose();
+const app = express();
 const DBPATH = 'dbUser.db';
 
-const hostname = '127.0.0.1';
-const port = 3071;
-const app = express();
-
-/* Servidor aplicação */
-
 app.use(express.static("../frontend/"));
+
+app.use(express.json());
 
 
 /* Definição dos endpoints */
 
-/******** CRUD ************/
-
-app.use(express.json());
+/****** CRUD ******************************************************************/
 
 // Retorna todos registros (é o R do CRUD - Read)
-app.get('/users', (req, res) => {
+app.get('/', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
@@ -55,7 +52,7 @@ app.post('/userinsert', urlencodedParser, (req, res) => {
 // Atualiza um registro (é o U do CRUD - Update)
 app.post('/userupdate', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
-	//res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
+	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
 	sql = "UPDATE tbUser SET title = '" + req.body.title + "' WHERE userId = " + req.body.userId;
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
@@ -84,6 +81,16 @@ app.post('/userdelete', urlencodedParser, (req, res) => {
 	db.close(); // Fecha o banco
 });
 
+
+app.post("/getUserInfos", (req,res) => {
+	DBPATH.get(`
+		SELECT title FROM tbUser WHERE id == 1
+	`, (err, response) => {
+		res.send(response)
+	})
+})
+
+/* Inicia o servidor */
 app.listen(port, hostname, () => {
-  console.log(`Page server running at http://${hostname}:${port}/`);
+  console.log(`BD server running at http://${hostname}:${port}/`);
 });
