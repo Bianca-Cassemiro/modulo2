@@ -11,10 +11,14 @@
     <title>Document</title>
   </head>
   <body>
+   <header>
+
     <img src="./assets/foto.jpg" alt="foto" id="foto" >
+   
     <h1 id="nome">Bianca Cassemiro Lima</h1>
 
     <h3 class="titles">Estudante de Engenharia de Computação</h3>
+   </header>
 
     <div class="container">
       <div class="leftcontainer">
@@ -37,14 +41,15 @@
             www.linkedin.com/in/bianca-cassemiro-99055620a
           </p>
           <div id="contato">
-            
+            <p>Digite seu nome:</p>
+            <input type="text" id="nome">
 
           </div>
         </div>
       </div>
 
       <div class="rightcontainer">
-        <button onclick="oi()" class="button-get-db">Informações adicionais</button>
+        <button onclick="oi()" class="button-get-db">Curiosidade</button>
         <div id="titlebox" >
         </div>
         <div>
@@ -80,7 +85,7 @@
         </div>
       </div>
     </div>
-    <button class="button" onclick="changeColor()" style="align-items:center;">
+    <button class="button" id="oi" onclick="changeColor()" style="align-items:center;">
       <h2> Aperte-me </h2>
     </button>
     <h2 class="frase"></h2>

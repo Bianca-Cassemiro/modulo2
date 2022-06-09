@@ -47,6 +47,8 @@ app.get(
 
   });
 
+
+
   // Retorna todos registros (é o R do CRUD - Read)
 app.get('/users', (req, res) => {
 	res.statusCode = 200;
@@ -110,6 +112,8 @@ app.post('/userdelete', urlencodedParser, (req, res) => {
 	});
 	db.close(); // Fecha o banco
 });
+
+
 /* Inicia o servidor */
 app.listen(port, hostname, () => {
   console.log(`BD server running at http://${hostname}:${port}/`);

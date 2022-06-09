@@ -23,7 +23,7 @@ function oi(){
   console.log("te amo")
   $("#titlebox").append(
     `
-    <h3>
+    <h3 class="font">
       ${res.title}
     </h3>
     `  

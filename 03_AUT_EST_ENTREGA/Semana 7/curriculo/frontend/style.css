@@ -1,25 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700');
 *{
-    color: white ;
+    color: rgb(48, 48, 48) ;
+
 }
 
+header{
+    background-color: #79CECB;
+    padding: 5px;
+}
+
+
 body{
+    margin: 0;
+    padding: 0;
     height: 100vh;
-    background-color:rgb(143, 173, 199);
+    background-color:#D7F5F5;
     text-align: center;
 }
 
 #foto{
     width: 200px;
     border-radius: 50%;
-    border: 5px rgb(111, 107, 196) solid;
+    border: 5px rgb(57, 54, 54) solid;
 }
 
+.font{
+    font-family: 'Lato', sans-serif; 
+    font-weight: 400;    
+}
 
 #nome{
     text-align: center;
     font-family: 'Lato', sans-serif;
-    font-weight: 300;    
+    font-weight: 700; 
+    font-size: 40px;   
 }
 
 .container{
@@ -42,12 +56,16 @@ body{
 
 }
 button{
-background-color: rgb(58, 177, 228);
-
+margin-top: 30px;
+background-color: #79CECB;
+border-radius: 10px;
+color: white;
 }
 
 .frase{
   color: #000000;
     
 }
+
+
 
