@@ -1,29 +1,13 @@
-function bubble(arr){
-   let arr = parseInt(document.getElementById("#arr"));
-   var i,j;
-   var len = arr.length;
-
-   var troca = false
-
-   for(i=0; i<len;i++){
-       troca = false
-        for(j = 0; j<len; j++){
-            if(arr[j] > arr[j+1]){
-                var temp = arr[j]
-                arr[j] = arr[j+1];
-                arr[j+1]= temp;
-                troca = true
-            }
-
-        }
-    
-        if(!troca){
-            break;
-        }
+function formatar(valor) {
+    var i;
+    var resultado = "";
+    var arrayValores = valor.split(", ");
+    arrayValores.sort(function(a, b) {
+      return a - b;
+    });
+    for(i=0; i!= arrayValores.length; i++){
+        resultado += " "+ arrayValores[i];
     }
-
-    document.getElementById(arr).innerHTML = arr;
-
-
-    }
+    document.getElementById("resultado").innerHTML = resultado;
+}''
 

@@ -15,7 +15,7 @@
 
     <img src="./assets/foto.jpg" alt="foto" id="foto" >
    
-    <h1 id="nome">Bianca Cassemiro Lima</h1>
+    <h1 id="Name">Bianca Cassemiro Lima</h1>
 
     <h3 class="titles">Estudante de Engenharia de Computação</h3>
    </header>
@@ -92,6 +92,15 @@
     <script src="servidor.js"> </script>
     <script src="script.js"> </script>
     <script src="../backend/scriptt.js"> </script>
+    <script>
+      async function getContent(){
+        try {
+          const response = await fetch('http://127.0.0.1:3071/')
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    </script>
  
   </body>
 </html>

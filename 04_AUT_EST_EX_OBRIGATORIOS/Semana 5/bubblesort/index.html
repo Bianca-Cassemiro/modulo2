@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bubble Sort</title>
+    <title>Ordena String</title>
 </head>
+
 <body>
- <h1>Bubble Sort</h1>
-    <input id ="narr" type="number">
-    <input id="vf" type="number">
-    <button onclick="bubble()">Enviar</button> 
+    <div class="container">
+        
+        <label for="valor">Insira os valores que deseja:</label><br>
+        <input type="text" id="valor">
+        <br>
+        <input class="btn" type="submit" onclick="formatar(valor.value)">
+        <p class="texto-resultado">Resultado: </p>
+        <p class="resultado" id="resultado"></p>
+    </div>
     
-    <span></span>
-    <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
+
 </html>
