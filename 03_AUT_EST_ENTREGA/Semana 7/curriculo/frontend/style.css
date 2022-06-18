@@ -76,4 +76,9 @@ border: none;
     border: solid 1px rgb(189, 189, 189);
 }
 
+input{
+    border: none;
+border-radius: 10px;
+
+}
 

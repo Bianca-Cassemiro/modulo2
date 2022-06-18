@@ -22,7 +22,6 @@ function oi(){
     
     $("#titlebox").append(
         res.title
-    
     )
     
     })

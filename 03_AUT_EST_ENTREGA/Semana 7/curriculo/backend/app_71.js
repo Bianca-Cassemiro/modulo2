@@ -1,91 +1,48 @@
-const express = require('express'); 
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-const sqlite3 = require('sqlite3').verbose();
-const DBPATH = 'dbUser.db';
-
-const hostname = '127.0.0.1';
-const port = 3071;
+const express = require("express");
 const app = express();
+const hostname = "127.0.0.1";
+const port = 3030;
+const bodyParser = require("body-parser");
+const sqlite3 = require("sqlite3");
+const db = new sqlite3.Database("dbUser.db");
+const path = require("path");
+const { response } = require("express");
+const { DefaultDeserializer } = require("v8");
+app.use(express.static("../frontend/"));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Servidor aplicação */
+app.post("/createFriend" , (req,res)=>{
+    const nome = req.body;
+    db.run(
+        `INSERT INTO nomes(nome) VALUES('${nome.name}') `
+    )
+})
+app.post("/delete" , (req,res)=>{
+    db.run(
+        `DELETE FROM nomes WHERE id =='1'`
 
-app.use(express.static("../frontend/"));
+    )
+})
+
+app.post("/editado" , (req,res)=>{
+    const nome = req.body;
+    console.log(nome.edicao)
+    db.run(
+        `UPDATE nomes SET (nome) = ('${nome.edicao}') WHERE id == '1' `
+    )
+})
+
+app.get("/getFriend", (req,res)=>{
+    db.get(`SELECT * FROM nomes`,(err,response)=>{
+        res.send(response)
+    })
+
+})
 
 
-/* Definição dos endpoints */
 
-/******** CRUD ************/
-
-app.use(express.json());
-
-// Retorna todos registros (é o R do CRUD - Read)
-app.get('/users', (req, res) => {
-
-	// res.statusCode = 200;
-	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
-
-	// var db = new sqlite3.Database(DBPATH); // Abre o banco
-	return res.json({message: 'okay'})
-	
-//   var sql = 'SELECT * FROM tbUser ORDER BY title COLLATE NOCASE';
-// 	db.all(sql, [],  (err, rows ) => {
-// 		if (err) {
-// 		    throw err;
-// 		}
-// 		res.json(rows);
-// 	});
-// 	db.close(); // Fecha o banco
-});
-
-// Insere um registro (é o C do CRUD - Create)
-app.post('/userinsert', urlencodedParser, (req, res) => {
-	res.statusCode = 200;
-	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
-
-	sql = "INSERT INTO nomes (nome, id) VALUES ('" + req.body.title + "', 33, false)";
-	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	db.run(sql, [],  err => {
-		if (err) {
-		    throw err;
-		}
-	});
-	db.close(); // Fecha o banco
-	res.end();
-});
-
-// Atualiza um registro (é o U do CRUD - Update)
-app.post('/userupdate', urlencodedParser, (req, res) => {
-	res.statusCode = 200;
-	//res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
-
-	sql = "UPDATE tbUser SET title = '" + req.body.title + "' WHERE userId = " + req.body.userId;
-	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	db.run(sql, [],  err => {
-		if (err) {
-		    throw err;
-		}
-		res.end();
-	});
-	db.close(); // Fecha o banco
-});
-
-// Exclui um registro (é o D do CRUD - Delete)
-app.post('/userdelete', urlencodedParser, (req, res) => {
-	res.statusCode = 200;
-	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
-
-	sql = "DELETE FROM tbUser WHERE userId = " + req.body.userId;
-	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	db.run(sql, [],  err => {
-		if (err) {
-		    throw err;
-		}
-		res.end();
-	});
-	db.close(); // Fecha o banco
-});
 
 app.listen(port, hostname, () => {
   console.log(`Page server running at http://${hostname}:${port}/`);
